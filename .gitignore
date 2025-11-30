@@ -2,3 +2,4 @@ umsatzplotter/
 tmp/
 *.json
 *.pyc
+*.csv
