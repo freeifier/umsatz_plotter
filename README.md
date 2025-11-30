@@ -12,8 +12,7 @@ Ein kleines, modulares Streamlit-Dashboard zum Laden, Filtern und Visualisieren 
 * **Automatisches Wiederladen** der zuletzt geöffneten CSV-Datei über `last_file.json`.
 * **Kompatibel mit Volksbank CSV-Exporten** (Konto-Umsätze).
 * CSV-Dateien werden sicher in `tmp/` abgelegt, um Streamlit-Uploads persistieren zu können.
-* **Datumsbereich global auswählbar** (falls aktiviert).
-* **Monatsauswahl** über Dropdown, sortiert in absteigender Reihenfolge.
+* **Datumsbereich global auswählbar** .
 * **Dynamische Plot-Module**: Alle `*.py` Dateien im Ordner `plots/` werden automatisch geladen.
 * Zentrale `loader.py` in `src/`, um CSV einzulesen und den letzten Pfad zu speichern.
 
@@ -45,12 +44,6 @@ project/
 pip install -r requirements.txt
 ```
 
-oder mindestens:
-
-```bash
-pip install streamlit pandas
-```
-
 ---
 
 ## Starten
@@ -72,16 +65,6 @@ streamlit run main.py
   * letzte geladene Datei persistent speichern
 
 Durch das Zwischenspeichern in `tmp/` können auch Streamlit-Dateiuploads erneut geladen werden.
-
----
-
-## Beispiel-Ansicht
-
-Hier kommt dein Screenshot hin:
-
-![Dashboard Screenshot](./screenshot.png)
-
-*(Bild später ersetzen oder überschreiben)*
 
 ---
 
