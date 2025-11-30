@@ -85,4 +85,4 @@ Neue Plots können einfach hinzugefügt werden:
 
 ## License
 
-MIT (optional anpassen)
+MIT
