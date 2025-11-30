@@ -74,16 +74,6 @@ Durch das Zwischenspeichern in `tmp/` können auch Streamlit-Dateiuploads erneut
 
 ---
 
-## Beispiel-Ansicht
-
-Hier kommt dein Screenshot hin:
-
-![Dashboard Screenshot](./screenshot.png)
-
-*(Bild später ersetzen oder überschreiben)*
-
----
-
 ## Erweiterbarkeit
 
 Neue Plots können einfach hinzugefügt werden:
