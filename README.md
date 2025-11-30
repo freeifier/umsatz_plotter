@@ -44,12 +44,6 @@ project/
 pip install -r requirements.txt
 ```
 
-oder mindestens:
-
-```bash
-pip install streamlit pandas
-```
-
 ---
 
 ## Starten
