@@ -88,4 +88,4 @@ add better category organizer
 
 ## License
 
-MIT (optional anpassen)
+MIT
