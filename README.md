@@ -82,6 +82,9 @@ Neue Plots können einfach hinzugefügt werden:
 3. Wird automatisch im Dashboard angezeigt.
 
 ---
+4. TODO
+Fix date selection 
+add better category organizer
 
 ## License
 
