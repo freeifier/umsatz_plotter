@@ -2,6 +2,7 @@ import streamlit as st
 from pathlib import Path
 import os
 import importlib.util
+import pandas as pd
 import sys
 
 sys.path.append(os.path.join(os.path.dirname(__file__), "src"))
@@ -32,32 +33,37 @@ elif (last_file := load_last_file()) and Path(last_file).exists():
 if df is None:
     st.warning("Bitte CSV-Datei hochladen")
     st.stop()
+st.write("📌 CSV-Spalten:", [repr(c) for c in df.columns])
 
 
 # -------------------------------------------------------
-# 🔥 Globaler Datumsbereich-Filter
+# 🔥 Globaler Datumsbereich-Filter (NEU: Monatsbuttons)
 # -------------------------------------------------------
-# Erwartet: df["Datum"] ist pandas datetime
-if not "Buchungstag" in df.columns:
-    st.error("Die CSV benötigt eine Spalte 'Datum'.")
+from gui.month_selector import get_month_ranges
+
+if "Buchungstag" not in df.columns:
+    st.error("Die CSV benötigt eine Spalte 'Buchungstag'.")
     st.stop()
 
-df["Datum"] = df["Buchungstag"].astype("datetime64[ns]")
+df["Datum"] = pd.to_datetime(df["Buchungstag"], errors="coerce")
 
 min_date = df["Datum"].min()
 max_date = df["Datum"].max()
 
-date_range = st.date_input(
-    "Datumsbereich auswählen",
-    value=(min_date, max_date)
-)
+# Neuer GUI-Selector (Monate + manuelle Eingabe)
+months = get_month_ranges(min_date, max_date)
+start_date = months[0][0]         # erstes Datum
+end_date = months[-1][1]          # letztes Datum
 
-if len(date_range) == 2:
-    start_date, end_date = date_range
-    df = df[(df["Datum"] >= str(start_date)) & (df["Datum"] <= str(end_date))]
+# Sicherstellen, dass beide Werte gesetzt sind
+if start_date is not None and end_date is not None:
+    df = df[(df["Datum"] >= start_date) & (df["Datum"] <= end_date)]
+    st.success(f"Zeitraum angewendet: {start_date.date()} bis {end_date.date()}")
+else:
+    st.warning("Bitte zwei Monate auswählen, um einen Zeitraum zu bilden.")
 
 
-# Falls nach dem Filter keine Daten übrig sind
+
 if df.empty:
     st.warning("Keine Daten im ausgewählten Datumsbereich.")
     st.stop()
